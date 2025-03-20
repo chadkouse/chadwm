@@ -51,13 +51,23 @@ wlan() {
 
 clock() {
 	printf "^c$black^ ^b$darkblue^ 󱑆 "
-	printf "^c$black^^b$blue^ $(date '+%H:%M')  "
+	printf "^c$black^^b$blue^ $(gettime)  "
 }
 
-while true; do
+mic() {
+  mic_val=$(mic_int)
+  if [ "$mic_val" -eq "0" ]; then
+    printf "^c$red^ "
+  else
+    printf "^c$green^ "
+  fi
+
+}
+
+#while true; do
 
   [ $interval = 0 ] || [ $(($interval % 3600)) = 0 ] && updates=$(pkg_updates)
   interval=$((interval + 1))
 
-  sleep 1 && xsetroot -name "$updates $(battery) $(brightness) $(cpu) $(mem) $(wlan) $(clock)"
-done
+  sleep 1 && xsetroot -name "$updates $(mic) $(cpu) $(mem) $(clock)"
+#done
