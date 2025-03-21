@@ -8,6 +8,8 @@ xset r rate 200 45
 
 # picom &
 
+dunst &
+
 #dash ~/.config/chadwm/scripts/bar.sh &
 dwmblocks &
 
